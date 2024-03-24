@@ -1,0 +1,74 @@
+import 'dart:io';
+
+// Define an interface
+abstract class Animal {
+  void makeSound();
+}
+
+// Implement the interface with a class
+class Dog implements Animal {
+  @override
+  void makeSound() {
+    print('Woof woof!');
+  }
+}
+
+// Define a superclass with an overridden method
+class Vehicle {
+  void startEngine() {
+    print('Engine started');
+  }
+}
+
+// Implement a subclass that overrides a method
+class Car extends Vehicle {
+  @override
+  void startEngine() {
+    super.startEngine(); // Call superclass method
+    print('Car engine started');
+  }
+}
+
+// Define a class that initializes data from a file
+class Student {
+  String name;
+  int age;
+
+  Student(this.name, this.age);
+
+  // Factory constructor to initialize from file
+  factory Student.fromFile(String filePath) {
+    final file = File(filePath);
+    final lines = file.readAsLinesSync();
+    final name = lines[0];
+    final age = int.parse(lines[1]);
+    return Student(name, age);
+  }
+
+  void displayInfo() {
+    print('Name: $name, Age: $age');
+  }
+}
+
+// Method demonstrating the use of a loop
+void printNumbers(int count) {
+  for (int i = 1; i <= count; i++) {
+    print(i);
+  }
+}
+
+void main() {
+  // Using classes and inheritance
+  Dog dog = Dog();
+  dog.makeSound(); // Outputs: Woof woof!
+
+  Car car = Car();
+  car.startEngine(); // Outputs: Engine started, Car engine started
+
+  // Using a class initialized with data from a file
+  Student student = Student.fromFile('student.txt');
+  student.displayInfo(); // Outputs: Name: John, Age: 20
+
+  // Using a loop
+  printNumbers(5); // Outputs: 1, 2, 3, 4, 5
+}
